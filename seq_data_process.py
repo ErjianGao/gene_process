@@ -44,6 +44,7 @@ for i in range(LEN):
 	for j in range(len_file):
 		if frame[j][name[i]] == 0:
 			count_zero += 1
+	#如果某一行的0的个数等于列数，则将这一行的数据都删掉
 	if count_zero == len_file:
 		frame = frame.drop([name[i]])
 
