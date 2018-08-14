@@ -11,6 +11,7 @@ dict = {}
 count_file = 0
 #循环的次数为list的长度
 for i in range(len_file):
+	'''此循环的目的是将文件中的内容存入列表中'''
 	count_file += 1
 	print('处理到：第',count_file,'个文件')
 	#获取每一个文件的位置
@@ -24,16 +25,21 @@ for i in range(len_file):
 		LEN = len(data[0])
 	for j in range(LEN):
 		if i == 0:
+			'''
+			当处理到第一个文件时，创建一个新的列表，然后将同一基因标识符的数据
+			添加到列表中
+			'''
 			dict[data[0][j]] = []
 			dict[data[0][j]].append(data[1][j])
 		else:
 			dict[data[0][j]].append(data[1][j])
 
+#转置
 frame = pd.DataFrame(dict).T
 name = frame.index
 
 for i in range(LEN):
-	'''次循环的目的是将数据表格中一列都为0的数据删除'''
+	'''此循环的目的是将数据表格中一列都为0的数据删除'''
 	count_zero = 0
 	for j in range(len_file):
 		if frame[j][name[i]] == 0:
